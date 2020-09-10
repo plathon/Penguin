@@ -51,7 +51,7 @@
       "@repositories/*": [
         "./src/repositories/*"
       ],
-      "@use-cases/*": [
+      "@useCases/*": [
         "./src/useCases/*"
       ],
       "@config/*": [
