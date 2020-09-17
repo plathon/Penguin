@@ -1,5 +1,5 @@
-import { CreateUserRequestDTO } from './createUserDTO';
 import UserRepository from '@repositories/userRepository';
+import { CreateUserRequestDTO } from './createUserDTO';
 import { CreateUserResponseDTO } from './createUserDTO'
 
 export default class CreateUserUseCase {
