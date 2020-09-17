@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import httpProvider from './app';
 
 const port = 3000;

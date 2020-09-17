@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import createUserController from './useCases/users/createUser';
 
 const routes = Router();
 
-routes.get('/', (request, response) => {
-  response.status(200).send({ response: 'ok!' });
-});
+routes.post('/users', createUserController.execute);
 
 export default routes;
