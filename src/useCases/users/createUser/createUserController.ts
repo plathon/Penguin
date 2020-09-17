@@ -7,6 +7,6 @@ export default class CreateUserController {
   execute = async (request: Request, response: Response): Promise<void> => {
     const body = request.body
     const user = await this.createUserUseCase.execute(body);
-    response.status(200).send({ users: user });
+    response.status(200).json(user);
   }
 }
