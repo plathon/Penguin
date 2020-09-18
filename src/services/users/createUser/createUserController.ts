@@ -1,10 +1,10 @@
 import { ValidationException } from '@errors/ValidationException';
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import CreateUserUseCase from './createUserUseCase';
+import CreateUserService from './createUserService';
 
 export default class CreateUserController {
-  constructor(private createUserUseCase: CreateUserUseCase) { }
+  constructor(private createUserService: CreateUserService) { }
 
   execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
     const validationErrors = validationResult(request);
@@ -14,7 +14,7 @@ export default class CreateUserController {
 
     const body = request.body
     try {
-      const user = await this.createUserUseCase.execute(body);
+      const user = await this.createUserService.execute(body);
       response.status(200).json(user);
     } catch (error) {
       next(error);
