@@ -1,5 +1,5 @@
 import User from '@entities/User';
-import { CreateUserRequestDTO } from '@useCases/users/createUser/createUserDTO';
+import { CreateUserRequestDTO } from '@services/users/createUser/createUserDTO';
 import { Database } from '@config/database'
 
 export default class UserRepository {

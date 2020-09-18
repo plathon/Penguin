@@ -21,8 +21,8 @@
       "@repositories/*": [
         "./src/repositories/*"
       ],
-      "@useCases/*": [
-        "./src/useCases/*"
+      "@services/*": [
+        "./src/services/*"
       ],
       "@config/*": [
         "./src/config/*"

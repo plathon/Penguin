@@ -1,17 +1,17 @@
 import database from '@config/database'
 import UserRepository from '@repositories/userRepository'
-import CreateUserUseCase from '@useCases/users/createUser/createUserUseCase'
-import CreateUserController from '@useCases/users/createUser/createUserController'
+import CreateUserService from '@services/users/createUser/createUserService'
+import CreateUserController from '@services/users/createUser/createUserController'
 import { Request, Response } from 'express'
 
 jest.mock('@config/database', () => ({}))
 jest.mock('@repositories/userRepository')
-jest.mock('@useCases/users/createUser/createUserUseCase')
+jest.mock('@services/users/createUser/createUserService')
 
 describe('create user controller', () => {
   describe('execute', () => {
     let userRepository;
-    let createUserUseCase;
+    let createUserService;
     let createUserController;
 
     const mockRequest = {
@@ -30,16 +30,16 @@ describe('create user controller', () => {
 
     beforeEach(() => {
       userRepository = new UserRepository(database)
-      createUserUseCase = new CreateUserUseCase(userRepository)
-      createUserUseCase.execute = jest.fn().mockResolvedValue('return value');
-      createUserController = new CreateUserController(createUserUseCase);
+      createUserService = new CreateUserService(userRepository)
+      createUserService.execute = jest.fn().mockResolvedValue('return value');
+      createUserController = new CreateUserController(createUserService);
     })
 
-    test('should call createUserUseCase with request.body params', async () => {
+    test('should call createUserService with request.body params', async () => {
       const mockedParams = mockRequest.body;
-      expect(createUserUseCase.execute).not.toHaveBeenCalled();
+      expect(createUserService.execute).not.toHaveBeenCalled();
       await createUserController.execute(mockRequest, mockResponse);
-      expect(createUserUseCase.execute).toHaveBeenCalledWith(mockedParams)
+      expect(createUserService.execute).toHaveBeenCalledWith(mockedParams)
     })
 
     test('should set status 200 to the request', async () => {
@@ -48,7 +48,7 @@ describe('create user controller', () => {
       expect(mockResponse.status).toHaveBeenCalledWith(200)
     })
 
-    test('should call json response.json method wih the result of createUserUseCase', async () => {
+    test('should call json response.json method wih the result of createUserService', async () => {
       expect(mockResponse.status(200).json).not.toHaveBeenCalled()
       await createUserController.execute(mockRequest, mockResponse);
       expect(mockResponse.status(200).json).toHaveBeenCalled()

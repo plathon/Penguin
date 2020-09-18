@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import createUserController from './useCases/users/createUser';
+import createUserController from './services/users/createUser';
 import createUserValidator from '@validations/createUserValidator'
 
 const routes = Router();
