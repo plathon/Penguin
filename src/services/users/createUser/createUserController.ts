@@ -7,9 +7,11 @@ export default class CreateUserController {
   constructor(private createUserService: CreateUserService) { }
 
   execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
-    const validationErrors = validationResult(request);
-    if (!validationErrors.isEmpty()) {
-      return next(new ValidationException());
+    const result = validationResult(request);
+    if (!result.isEmpty()) {
+      const errors = result.array();
+      const exception = new ValidationException(errors)
+      return next(exception);
     }
 
     const body = request.body
