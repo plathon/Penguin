@@ -1,8 +1,8 @@
 import { HttpException } from './HttpException'
-import { HttpStatusCode } from "./HttpStatusCode";
+import { HttpStatusCode } from './HttpStatusCode'
 
 export class InternalServerErrorException extends HttpException {
-  constructor(description = "Internal Server Error") {
-    super("INTERNAL SERVER ERROR", HttpStatusCode.INTERNAL_SERVER, description);
+  constructor (description = 'Internal Server Error') {
+    super('INTERNAL SERVER ERROR', HttpStatusCode.INTERNAL_SERVER, description)
   }
 }

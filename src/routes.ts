@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import createUserController from './services/users/createUser';
+import { Router } from 'express'
+import createUserController from './services/users/createUser'
 import createUserValidator from '@validations/createUserValidator'
 
-const routes = Router();
+const routes = Router()
 
-routes.post('/users', createUserValidator, createUserController.execute);
+routes.post('/users', createUserValidator, createUserController.execute)
 
-export default routes;
+export default routes
