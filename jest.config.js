@@ -1,12 +1,11 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
-//reference to config ts @paths: https://github.com/dividab/tsconfig-paths/issues/97#issuecomment-542650519
+// reference to config ts @paths: https://github.com/dividab/tsconfig-paths/issues/97#issuecomment-542650519
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { compilerOptions } = require('./tsconfig');
-
+const { compilerOptions } = require('./tsconfig')
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
@@ -28,7 +27,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -98,7 +97,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: "ts-jest",
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -142,7 +141,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: 'node'
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -196,4 +195,4 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-};
+}

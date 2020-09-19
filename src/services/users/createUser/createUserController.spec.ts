@@ -10,9 +10,9 @@ jest.mock('@services/users/createUser/createUserService')
 
 describe('create user controller', () => {
   describe('execute', () => {
-    let userRepository;
-    let createUserService;
-    let createUserController;
+    let userRepository
+    let createUserService
+    let createUserController
 
     const mockRequest = {
       body: {
@@ -31,26 +31,26 @@ describe('create user controller', () => {
     beforeEach(() => {
       userRepository = new UserRepository(database)
       createUserService = new CreateUserService(userRepository)
-      createUserService.execute = jest.fn().mockResolvedValue('return value');
-      createUserController = new CreateUserController(createUserService);
+      createUserService.execute = jest.fn().mockResolvedValue('return value')
+      createUserController = new CreateUserController(createUserService)
     })
 
     test('should call createUserService with request.body params', async () => {
-      const mockedParams = mockRequest.body;
-      expect(createUserService.execute).not.toHaveBeenCalled();
-      await createUserController.execute(mockRequest, mockResponse);
+      const mockedParams = mockRequest.body
+      expect(createUserService.execute).not.toHaveBeenCalled()
+      await createUserController.execute(mockRequest, mockResponse)
       expect(createUserService.execute).toHaveBeenCalledWith(mockedParams)
     })
 
     test('should set status 200 to the request', async () => {
-      expect(mockResponse.status).not.toHaveBeenCalled();
-      await createUserController.execute(mockRequest, mockResponse);
+      expect(mockResponse.status).not.toHaveBeenCalled()
+      await createUserController.execute(mockRequest, mockResponse)
       expect(mockResponse.status).toHaveBeenCalledWith(200)
     })
 
     test('should call json response.json method wih the result of createUserService', async () => {
       expect(mockResponse.status(200).json).not.toHaveBeenCalled()
-      await createUserController.execute(mockRequest, mockResponse);
+      await createUserController.execute(mockRequest, mockResponse)
       expect(mockResponse.status(200).json).toHaveBeenCalled()
     })
   })
