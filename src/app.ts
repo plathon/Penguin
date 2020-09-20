@@ -1,6 +1,10 @@
-import { ErrorHandler } from '@errors/ErrorHandler'
+import dotenvFlow from 'dotenv-flow'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+dotenvFlow.config()
+
 import express from 'express'
 import routes from './routes'
+import { ErrorHandler } from '@errors/ErrorHandler'
 
 const httpProvider = express()
 
