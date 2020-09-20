@@ -1,5 +1,5 @@
 import path from 'path'
-import { createConnection, Connection } from 'typeorm'
+import { ConnectionOptions, createConnection, Connection } from 'typeorm'
 
 export class Database {
   private connection: Connection;
@@ -9,17 +9,18 @@ export class Database {
   }
 
   private async init () {
-    this.connection = await createConnection({
+    const options: ConnectionOptions = {
       type: 'postgres',
       host: process.env.PG_HOST,
       port: 5432,
       username: process.env.PG_USERNAME,
       password: process.env.PG_PASSWORD,
-      database: process.env.DATABASE,
-      synchronize: true,
-      logging: false,
+      database: process.env.PG_DATABASE,
+      synchronize: false,
+      logging: process.env.NODE_ENV !== 'production',
       entities: [path.resolve(__dirname, '../../entities/*{.ts,.js}')]
-    })
+    }
+    this.connection = await createConnection(options)
   }
 
   async getConnection (): Promise<Connection> {
