@@ -1,12 +1,10 @@
 import 'reflect-metadata'
-import dotenvFlow from 'dotenv-flow'
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-dotenvFlow.config()
-
+import '@utils/environment'
 import express from 'express'
 import routes from './routes'
 import { ErrorHandler } from '@errors/ErrorHandler'
 
+console.log(process.env.PG_PASSWORD)
 const httpProvider = express()
 
 httpProvider.use(express.json())
