@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "NODE_ENV=development tsnd -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "migrate": "ts-node-dev ./node_modules/.bin/typeorm migration:run",
-    "test": "jest"
+    "test": "NODE_ENV=testing jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "@types/express-validator": "^3.0.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.6.4",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "eslint": "^7.9.0",
@@ -24,6 +25,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.4.2",
+    "supertest": "^4.0.2",
     "ts-jest": "^26.3.0",
     "ts-node-dev": "^1.0.0-pre.62",
     "ts-node-paths": "^1.0.1",

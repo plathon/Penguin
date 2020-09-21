@@ -9,6 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
+      "@server/*": [
+        "./src/*"
+      ],
       "@entities/*": [
         "./src/entities/*"
       ],
