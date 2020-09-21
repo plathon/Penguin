@@ -1,30 +1,30 @@
-import path from 'path'
-import { ConnectionOptions, createConnection, Connection } from 'typeorm'
+import { createConnection, Connection } from 'typeorm'
+import getConnectionOptions from './typeormConfig'
 
 export class Database {
   private connection: Connection;
 
   constructor () {
-    this.init()
+    if (process.env.NODE_ENV !== 'testing') {
+      this.init()
+    }
   }
 
   private async init () {
-    const options: ConnectionOptions = {
-      type: 'postgres',
-      host: process.env.PG_HOST,
-      port: 5432,
-      username: process.env.PG_USERNAME,
-      password: process.env.PG_PASSWORD,
-      database: process.env.PG_DATABASE,
-      synchronize: false,
-      logging: process.env.NODE_ENV !== 'production',
-      entities: [path.resolve(__dirname, '../../entities/*{.ts,.js}')]
-    }
-    this.connection = await createConnection(options)
+    const defaultConnection = getConnectionOptions.execute()
+    this.connection = await createConnection(defaultConnection)
   }
 
   async getConnection (): Promise<Connection> {
     return this.connection
+  }
+
+  async openConnection (): Promise<void> {
+    return this.init()
+  }
+
+  async closeConnection (): Promise<void> {
+    return this.connection.close()
   }
 };
 
