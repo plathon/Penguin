@@ -32,6 +32,9 @@
       ],
       "@validations/*": [
         "./src/validations/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
       ]
     }
   }
