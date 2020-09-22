@@ -1,17 +1,13 @@
-import { ValidationException } from '@errors/ValidationException'
 import { NextFunction, Request, Response } from 'express'
-import { validationResult } from 'express-validator'
 import CreateUserService from './createUserService'
+import requestErrorHandler from '@utils/requestErrorHandler'
 
 export default class CreateUserController {
   constructor (private createUserService: CreateUserService) { }
 
   execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
-    const result = validationResult(request)
-    if (!result.isEmpty()) {
-      const errors = result.array()
-      const exception = new ValidationException(errors)
-      return next(exception)
+    if (!requestErrorHandler(request, next)) {
+      return
     }
 
     const body = request.body
