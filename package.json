@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "NODE_ENV=development tsnd -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "migrate": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --transpile-only ./src/utils/migrate",
-    "test": "NODE_ENV=testing jest"
+    "test": "NODE_ENV=testing jest",
+    "lint": "eslint './src/**/*ts'"
   },
   "author": "",
   "license": "ISC",
