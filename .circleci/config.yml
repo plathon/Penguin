@@ -1,7 +1,18 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
-workflows:
-  node-tests:
-    jobs:
-      - node/test
+jobs:
+  build:
+    docker:
+      - image: cimg/node:13.0.1
+      - image: circleci/postgres:9.6.5-alpine-ram
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run lint
+      - run:
+          name: Run tests
+          command: npm test
+          environment:
+            PG_HOST: localhost
+            PG_USERNAME: postgres
+            PG_DATABASE: circle_test
+            PG_PASSWORD:
