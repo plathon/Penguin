@@ -1,5 +1,11 @@
-import { AuthUserLocalRequestDTO } from './authUserLocalDTO'
+import UserRepository from '@server/repositories/userRepository'
+import { AuthUserLocalRequestDTO, AuthUserLocalResponseDTO } from './authUserLocalDTO'
 
 export default class AuthUserLocalService {
-  execute = async (authUserLocalRequestDTO: AuthUserLocalRequestDTO): Promise<void> => {}
+  constructor (private userRepository: UserRepository) {}
+  async execute (authUserLocalRequestDTO: AuthUserLocalRequestDTO): Promise<AuthUserLocalResponseDTO> {
+    const user = await this.userRepository.findUserByEmail(authUserLocalRequestDTO)
+    const { id, name, email } = user
+    return { id, name, email }
+  }
 }
