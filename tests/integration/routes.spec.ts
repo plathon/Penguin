@@ -1,6 +1,7 @@
 import supertest from 'supertest'
 import server from '@server/app'
 import database from '@config/database'
+import { MigrationExecutor } from 'typeorm'
 
 const app = () => supertest(server)
 
@@ -10,7 +11,15 @@ describe('routes', () => {
     await (await database.getConnection()).runMigrations()
   })
 
-  afterAll(async () => await database.closeConnection())
+  afterAll(async () => {
+    const connection = await database.getConnection()
+    const migrationExecutor = new MigrationExecutor(connection)
+    const migrations = await migrationExecutor.getAllMigrations()
+    migrations.forEach(async () => {
+      await migrationExecutor.undoLastMigration()
+    })
+    await database.closeConnection()
+  })
 
   describe('users', () => {
     test('should register a new user (POST: /users)', async () => {
