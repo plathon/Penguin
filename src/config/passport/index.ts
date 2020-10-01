@@ -1,7 +1,7 @@
 import passport from 'passport'
-import localStrategy from '@services/authentication/authUserLocal/localPassportStrategy'
+import JwtStrategy from './JwtStrategy'
 
-passport.use(localStrategy)
+passport.use(JwtStrategy)
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))

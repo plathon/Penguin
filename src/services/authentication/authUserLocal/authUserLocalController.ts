@@ -9,8 +9,8 @@ export default class AuthUserLocalController {
     if (!requestErrorHandler(request, next)) return
     const body = request.body
     try {
-      // const user = await this.authUserLocalService.execute(body)
-      response.status(200).json(body)
+      const user = await this.authUserLocalService.execute(body)
+      response.status(200).json(user)
     } catch (error) {
       next(error)
     }

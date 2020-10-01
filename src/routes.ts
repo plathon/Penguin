@@ -10,6 +10,6 @@ import authUserLocalValidator from '@validations/authUserLocalValidator'
 const routes = Router()
 
 routes.post('/users', createUserValidator, createUserController.execute)
-routes.post('/auth/local', [authUserLocalValidator, passport.authenticate('local')], authUserLocalController.execute)
+routes.post('/auth/local', authUserLocalValidator, authUserLocalController.execute)
 
 export default routes
