@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import passport from '@config/passport'
+
 import createUserController from '@services/users/createUser'
 import createUserValidator from '@validations/createUserValidator'
 
@@ -8,6 +10,6 @@ import authUserLocalValidator from '@validations/authUserLocalValidator'
 const routes = Router()
 
 routes.post('/users', createUserValidator, createUserController.execute)
-routes.post('/auth/local', authUserLocalValidator, authUserLocalController.execute)
+routes.post('/auth/local', [authUserLocalValidator, passport.authenticate('local')], authUserLocalController.execute)
 
 export default routes
