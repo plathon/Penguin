@@ -5,6 +5,7 @@ import { ValidationException } from './ValidationException'
 
 export class ErrorHandler {
   handle = (err: Error, req: Request, res: Response, next: NextFunction): void => {
+    console.log(err)
     if (err instanceof ValidationException) {
       res.status(err.httpCode).json({ message: err.getErrors() })
     } else if (err instanceof HttpException) {
