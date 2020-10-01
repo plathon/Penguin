@@ -5,7 +5,5 @@ export interface CreateUserRequestDTO {
 }
 
 export interface CreateUserResponseDTO {
-  id: number;
-  name: string;
-  email: string;
+  accessToken: string
 }

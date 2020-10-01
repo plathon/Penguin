@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, AfterLoad } from 'typeorm'
 import Bcrypt from '@providers/Bcrypt'
+import { AccessToken } from '@server/services/users/createUser/createUserDTO'
+import Jwt from '@server/providers/Jwt'
 
 @Entity()
 export default class User {
@@ -32,5 +34,12 @@ export default class User {
   @AfterLoad()
   loadTempPassword () {
     this.tempPassword = this.password
+  }
+
+  generateAccessToken (): AccessToken {
+    const jwt = new Jwt()
+    const user = { id: this.id, name: this.name, email: this.email }
+    const token = { accessToken: jwt.sign(user, process.env.APP_SECRET) }
+    return token
   }
 }
