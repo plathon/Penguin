@@ -16,3 +16,4 @@ jobs:
             PG_USERNAME: postgres
             PG_DATABASE: circle_test
             PG_PASSWORD:
+            APP_SECRET: top_secret_testing_phrase

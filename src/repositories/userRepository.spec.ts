@@ -2,10 +2,9 @@ import database from '@config/database'
 import UserRepository from '@repositories/userRepository'
 import User from '@entities/User'
 
-jest.mock('@entities/User')
-
+jest.mock('@entities/User', () => jest.fn().mockImplementation(() => ({})))
 jest.mock('@config/database', () => {
-  const save = jest.fn(user => user).mockReturnValue('returned value')
+  const save = jest.fn().mockReturnValue('returned value')
   const repository = { save: save }
   const getRepository = jest.fn().mockReturnValue(repository)
   const getConnection = jest.fn().mockResolvedValue({ getRepository: getRepository })
@@ -19,7 +18,7 @@ describe('User repository', () => {
   describe('Create user', () => {
     let repository
     let db
-    const mockedUser = { id: 1, name: 'jose', email: 'jose@test.com', password: '123' }
+    const mockedUser = {}
 
     beforeEach(() => {
       jest.clearAllMocks()
@@ -43,11 +42,7 @@ describe('User repository', () => {
       const repo = (await db.getConnection()).getRepository()
       expect(repo.save).not.toHaveBeenCalled()
       await repository.createUser(mockedUser)
-      const mockedUserToCompare = new User()
-      mockedUserToCompare.name = mockedUser.name
-      mockedUserToCompare.email = mockedUser.email
-      mockedUserToCompare.password = mockedUser.password
-      expect(repo.save).toHaveBeenCalledWith(mockedUserToCompare)
+      expect(repo.save).toHaveBeenCalledWith({})
     })
 
     test('should return the result of repository.save() method', async () => {
