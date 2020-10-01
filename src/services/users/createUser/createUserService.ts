@@ -6,8 +6,7 @@ export default class CreateUserService {
 
   async execute (createUserRequestDTO: CreateUserRequestDTO): Promise<CreateUserResponseDTO> {
     const user = await this.userRepository.createUser(createUserRequestDTO)
-    const { id, name, email } = user
-    const userResponseDTO = { id, name, email }
-    return userResponseDTO
+    const token = user.generateAccessToken()
+    return token
   }
 }
