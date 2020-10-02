@@ -26,8 +26,21 @@ describe('routes', () => {
       const response = await app()
         .post('/users')
         .send({ name: 'jose da silva', email: 'jose@test.com', password: '12345' })
-
       expect(response.status).toBe(200)
+    })
+
+    test('should authenticate a user local (POST: /auth/local)', async () => {
+      const response = await app()
+        .post('/auth/local')
+        .send({ email: 'jose@test.com', password: '12345' })
+      expect(response.status).toBe(200)
+    })
+
+    test('should return a 404 when not found user (POST: /auth/local)', async () => {
+      const response = await app()
+        .post('/auth/local')
+        .send({ email: 'inexistent@test.com', password: '12345' })
+      expect(response.status).toBe(404)
     })
   })
 })
