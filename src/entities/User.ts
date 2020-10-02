@@ -42,4 +42,9 @@ export default class User {
     const token = { accessToken: jwt.sign(user, process.env.APP_SECRET) }
     return token
   }
+
+  async comparePassword (password: string): Promise<boolean> {
+    const bcrypt = new Bcrypt()
+    return await bcrypt.compare(password, this.password)
+  }
 }
