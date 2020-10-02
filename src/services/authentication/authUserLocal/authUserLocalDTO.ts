@@ -4,7 +4,5 @@ export interface AuthUserLocalRequestDTO {
 }
 
 export interface AuthUserLocalResponseDTO {
-  id: number,
-  name: string,
-  email: string
+  accessToken: string
 }

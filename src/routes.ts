@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import passport from '@config/passport'
 
 import createUserController from '@services/users/createUser'
 import createUserValidator from '@validations/createUserValidator'
