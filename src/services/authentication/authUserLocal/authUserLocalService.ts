@@ -1,5 +1,5 @@
-import { UnauthorizedException } from '@server/errors/UnauthorizedException'
-import UserRepository from '@server/repositories/userRepository'
+import { UnauthorizedException } from '@errors/UnauthorizedException'
+import UserRepository from '@repositories/userRepository'
 import { AuthUserLocalRequestDTO, AuthUserLocalResponseDTO } from './authUserLocalDTO'
 
 export default class AuthUserLocalService {

@@ -1,5 +1,5 @@
 import supertest from 'supertest'
-import server from '@server/app'
+import server from '../../src/app'
 import database from '@config/database'
 import { MigrationExecutor } from 'typeorm'
 
@@ -22,6 +22,8 @@ describe('routes', () => {
   })
 
   describe('users', () => {
+    let accessToken
+
     test('should register a new user (POST: /users)', async () => {
       const response = await app()
         .post('/users')
@@ -33,6 +35,7 @@ describe('routes', () => {
       const response = await app()
         .post('/auth/local')
         .send({ email: 'jose@test.com', password: '12345' })
+      accessToken = response.body.accessToken
       expect(response.status).toBe(200)
     })
 
@@ -41,6 +44,15 @@ describe('routes', () => {
         .post('/auth/local')
         .send({ email: 'inexistent@test.com', password: '12345' })
       expect(response.status).toBe(404)
+    })
+
+    test('should create a new product (POST: /product)', async () => {
+      const response = await app()
+        .post('/product')
+        .set('Authorization', `Bearer ${accessToken}`)
+        .send({ name: 'product name', description: 'product description' })
+
+      expect(response.status).toBe(200)
     })
   })
 })

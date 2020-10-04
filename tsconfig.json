@@ -7,11 +7,12 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./src/@types",
+      "node_modules/@types"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@server/*": [
-        "./src/*"
-      ],
       "@entities/*": [
         "./src/entities/*"
       ],

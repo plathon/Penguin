@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, AfterLoad } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, AfterLoad, OneToMany } from 'typeorm'
 import Bcrypt from '@providers/Bcrypt'
-import { CreateUserResponseDTO } from '@server/services/users/createUser/createUserDTO'
-import Jwt from '@server/providers/Jwt'
+import { CreateUserResponseDTO } from '@services/users/createUser/createUserDTO'
+import Jwt from '@providers/Jwt'
+import Product from './Product'
 
 @Entity()
 export default class User {
@@ -16,6 +17,9 @@ export default class User {
 
   @Column()
   password: string;
+
+  @OneToMany(type => Product, product => product.user)
+  products: Product[]
 
   private tempPassword: string
 

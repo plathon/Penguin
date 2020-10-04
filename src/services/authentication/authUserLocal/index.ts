@@ -1,5 +1,5 @@
-import database from '@server/config/database'
-import UserRepository from '@server/repositories/userRepository'
+import database from '@config/database'
+import UserRepository from '@repositories/userRepository'
 import AuthUserLocalController from './authUserLocalController'
 import AuthUserLocalService from './authUserLocalService'
 
