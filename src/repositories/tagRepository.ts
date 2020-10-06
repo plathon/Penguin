@@ -13,4 +13,10 @@ export default class TagRepository {
     const response = await repository.save(tag)
     return response
   }
+
+  async listTags (limit: number, skip: number): Promise<Tag[]> {
+    const repository = (await database.getConnection()).getRepository(Tag)
+    const tags = await repository.find({ take: limit, skip: skip })
+    return tags
+  }
 }
