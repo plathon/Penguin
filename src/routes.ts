@@ -16,6 +16,9 @@ import listProductsValidator from '@validations/listProductsValidator'
 import createTagsController from '@services/tags/createTags'
 import createTagsValidator from '@validations/createTagsValidator'
 
+import listTagsController from '@services/tags/listTags'
+import listTagsValidator from '@validations/listTagsValidator'
+
 const routes = Router()
 
 routes.post('/users', createUserValidator, createUserController.execute)
@@ -25,5 +28,6 @@ routes.post('/product', [createProductValidator, passport.authenticate('jwt', { 
 routes.get('/products', [listProductsValidator, passport.authenticate('jwt', { session: false })], listProductsController.execute)
 
 routes.post('/tag', [createTagsValidator, passport.authenticate('jwt', { session: false })], createTagsController.execute)
+routes.get('/tags', [listTagsValidator, passport.authenticate('jwt', { session: false })], listTagsController.execute)
 
 export default routes
