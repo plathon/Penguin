@@ -6,11 +6,11 @@ export default class Bcrypt implements IBcrypt {
     return await bcryptProvider.genSalt(rounds)
   }
 
-  async hash (phrase, salt) {
+  async hash (phrase: string, salt: string) {
     return await bcryptProvider.hash(phrase, salt)
   }
 
-  async compare (phrase, hash) {
+  async compare (phrase: string, hash: string) {
     return await bcryptProvider.compare(phrase, hash)
   }
 }
