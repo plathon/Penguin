@@ -2,6 +2,7 @@ import { Database } from '@config/database'
 import Product from '@entities/Product'
 import User from '@entities/User'
 import { CreateProductRequestDTO } from '@services/products/createProduct/createProductDTO'
+import { In } from 'typeorm'
 
 export default class ProductRepository {
   constructor (private database: Database) { }
@@ -28,6 +29,12 @@ export default class ProductRepository {
       take: limit,
       skip: skip
     })
+    return products
+  }
+
+  async listProductsById (userIds: number[]): Promise<Product[]> {
+    const repository = (await this.database.getConnection()).getRepository(Product)
+    const products = await repository.find({ where: { id: In(userIds) } })
     return products
   }
 }
