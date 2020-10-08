@@ -15,7 +15,7 @@ export default class UserRepository {
     return repository.save(user)
   }
 
-  async findUserByEmail (email): Promise<User> {
+  async findUserByEmail (email: string): Promise<User> {
     const repository = (await this.database.getConnection()).getRepository(User)
     const user = await repository.findOne({ email })
     if (!user) {
