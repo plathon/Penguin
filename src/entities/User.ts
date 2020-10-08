@@ -3,6 +3,7 @@ import Bcrypt from '@providers/Bcrypt'
 import { CreateUserResponseDTO } from '@services/users/createUser/createUserDTO'
 import Jwt from '@providers/Jwt'
 import Product from './Product'
+import Order from './Order'
 
 @Entity()
 export default class User {
@@ -17,6 +18,9 @@ export default class User {
 
   @Column()
   password: string;
+
+  @OneToMany(type => Order, order => order.user)
+  orders: Order[]
 
   @OneToMany(type => Product, product => product.user)
   products: Product[]
