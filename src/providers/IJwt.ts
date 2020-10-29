@@ -1,3 +1,9 @@
+export interface ISign {
+  id: number
+  name: string
+  email: string
+}
+
 export default interface IJwt {
-  sign(data: any, privateKey: string): string
+  sign(data: ISign, privateKey: string): string
 }

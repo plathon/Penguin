@@ -27,10 +27,10 @@ export default class User {
   @Column()
   password: string
 
-  @OneToMany(type => Order, order => order.user)
+  @OneToMany(() => Order, order => order.user)
   orders: Order[]
 
-  @OneToMany(type => Product, product => product.user)
+  @OneToMany(() => Product, product => product.user)
   products: Product[]
 
   private tempPassword: string

@@ -18,7 +18,7 @@ export class GetConnectionOptions {
     }
   ]
 
-  execute(connectionName: string = 'default'): ConnectionOptions {
+  execute(connectionName = 'default'): ConnectionOptions {
     return this.connectionOptions.find(
       connection => connection.name === connectionName
     )

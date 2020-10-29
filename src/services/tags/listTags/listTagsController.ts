@@ -5,6 +5,7 @@ import ListTagsService from './listTagsService'
 export default class ListTagsController {
   constructor(private listTagsService: ListTagsService) {}
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   execute = async (
     request: Request,
     response: Response,

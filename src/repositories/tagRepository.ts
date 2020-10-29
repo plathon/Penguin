@@ -3,7 +3,7 @@ import Tag from '@entities/Tag'
 import { CreateTagsRequestDTO } from '@services/tags/createTags/createTagsDTO'
 
 export default class TagRepository {
-  constructor(database: Database) {}
+  constructor(private database: Database) {}
 
   async createTag(createTagRequestDTO: CreateTagsRequestDTO): Promise<Tag> {
     const repository = (await database.getConnection()).getRepository(Tag)

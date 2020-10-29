@@ -20,10 +20,10 @@ export default class Product {
   @Column()
   description: string
 
-  @ManyToOne(type => User, user => user.products)
+  @ManyToOne(() => User, user => user.products)
   user: User
 
-  @ManyToMany(type => Tag, tag => tag.products)
+  @ManyToMany(() => Tag, tag => tag.products)
   @JoinTable()
   tags: Tag[]
 }

@@ -21,6 +21,6 @@
     ],
     "rules": {
         "no-useless-constructor": "off",
-        "import/first": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }

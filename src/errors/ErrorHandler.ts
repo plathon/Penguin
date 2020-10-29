@@ -8,6 +8,7 @@ export class ErrorHandler {
     err: Error,
     req: Request,
     res: Response,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     next: NextFunction
   ): void => {
     if (err instanceof ValidationException) {
@@ -16,11 +17,9 @@ export class ErrorHandler {
       res.status(err.httpCode).json({ message: err.message })
     } else {
       console.log(err)
-      res
-        .status(HttpStatusCode.INTERNAL_SERVER)
-        .json({
-          message: 'Could not process your request. Please try again later.'
-        })
+      res.status(HttpStatusCode.INTERNAL_SERVER).json({
+        message: 'Could not process your request. Please try again later.'
+      })
     }
   }
 }
