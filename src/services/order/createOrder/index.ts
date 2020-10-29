@@ -8,7 +8,11 @@ import CreateOrderService from './createOrderService'
 const userRepository = new UserRepository(database)
 const productRepository = new ProductRepository(database)
 const orderRepository = new OrderRepository(database)
-const createOrderService = new CreateOrderService(userRepository, productRepository, orderRepository)
+const createOrderService = new CreateOrderService(
+  userRepository,
+  productRepository,
+  orderRepository
+)
 const createOrderController = new CreateOrderController(createOrderService)
 
 export default createOrderController

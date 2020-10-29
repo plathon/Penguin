@@ -4,13 +4,15 @@ import CreateUserService from '@services/users/createUser/createUserService'
 
 jest.mock('@config/database', () => ({}))
 const mockGenerateAccessToken = jest.fn().mockReturnValue('mocked')
-jest.mock('@repositories/userRepository', () => jest.fn().mockImplementation(() => {
-  return {
-    createUser: jest.fn().mockResolvedValue({
-      generateAccessToken: mockGenerateAccessToken
-    })
-  }
-}))
+jest.mock('@repositories/userRepository', () =>
+  jest.fn().mockImplementation(() => {
+    return {
+      createUser: jest.fn().mockResolvedValue({
+        generateAccessToken: mockGenerateAccessToken
+      })
+    }
+  })
+)
 
 describe('Create user use case', () => {
   let repository

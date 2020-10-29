@@ -6,7 +6,12 @@ import CreateProductService from './createProductService'
 
 const productRepository = new ProductRepository(database)
 const userRepository = new UserRepository(database)
-const createProductService = new CreateProductService(productRepository, userRepository)
-const createProductController = new CreateProductController(createProductService)
+const createProductService = new CreateProductService(
+  productRepository,
+  userRepository
+)
+const createProductController = new CreateProductController(
+  createProductService
+)
 
 export default createProductController

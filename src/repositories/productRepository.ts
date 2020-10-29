@@ -5,11 +5,16 @@ import { CreateProductRequestDTO } from '@services/products/createProduct/create
 import { In } from 'typeorm'
 
 export default class ProductRepository {
-  constructor (private database: Database) { }
+  constructor(private database: Database) {}
 
-  async createProduct (createProductRequestDTO: CreateProductRequestDTO, user: User): Promise<Product> {
+  async createProduct(
+    createProductRequestDTO: CreateProductRequestDTO,
+    user: User
+  ): Promise<Product> {
     const { name, description } = createProductRequestDTO
-    const repository = (await this.database.getConnection()).getRepository(Product)
+    const repository = (await this.database.getConnection()).getRepository(
+      Product
+    )
     const product = new Product()
     product.name = name
     product.description = description
@@ -18,8 +23,14 @@ export default class ProductRepository {
     return result
   }
 
-  async listProductsByUser (user: User, limit: number, skip: number): Promise<Product[]> {
-    const repository = (await this.database.getConnection()).getRepository(Product)
+  async listProductsByUser(
+    user: User,
+    limit: number,
+    skip: number
+  ): Promise<Product[]> {
+    const repository = (await this.database.getConnection()).getRepository(
+      Product
+    )
     const products = await repository.find({
       where: {
         user: {
@@ -32,8 +43,10 @@ export default class ProductRepository {
     return products
   }
 
-  async listProductsById (userIds: number[]): Promise<Product[]> {
-    const repository = (await this.database.getConnection()).getRepository(Product)
+  async listProductsById(userIds: number[]): Promise<Product[]> {
+    const repository = (await this.database.getConnection()).getRepository(
+      Product
+    )
     const products = await repository.find({ where: { id: In(userIds) } })
     return products
   }

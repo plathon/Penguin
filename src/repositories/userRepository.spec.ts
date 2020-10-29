@@ -7,7 +7,9 @@ jest.mock('@config/database', () => {
   const save = jest.fn().mockReturnValue('returned value')
   const repository = { save: save }
   const getRepository = jest.fn().mockReturnValue(repository)
-  const getConnection = jest.fn().mockResolvedValue({ getRepository: getRepository })
+  const getConnection = jest
+    .fn()
+    .mockResolvedValue({ getRepository: getRepository })
 
   return {
     getConnection: getConnection
@@ -29,7 +31,9 @@ describe('User repository', () => {
     test('should get the user repository', async () => {
       expect((await db.getConnection()).getRepository).not.toHaveBeenCalled()
       await repository.createUser(mockedUser)
-      expect((await db.getConnection()).getRepository).toHaveBeenCalledWith(User)
+      expect((await db.getConnection()).getRepository).toHaveBeenCalledWith(
+        User
+      )
     })
 
     test('should instantiate a new user', async () => {

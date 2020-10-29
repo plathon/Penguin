@@ -1,5 +1,5 @@
 export interface AuthUserLocalRequestDTO {
-  email: string,
+  email: string
   password: string
 }
 

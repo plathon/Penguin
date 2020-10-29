@@ -3,9 +3,13 @@ import { NextFunction, Request, Response } from 'express'
 import CreateTagsService from './createTagsService'
 
 export default class CreateTagsController {
-  constructor (private createTagsService: CreateTagsService) { }
+  constructor(private createTagsService: CreateTagsService) {}
 
-  execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  execute = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> => {
     if (!requestErrorHandler(request, next)) return
     const body = request.body
     try {

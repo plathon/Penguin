@@ -1,7 +1,6 @@
 import './environment'
 import database from '@config/database'
-
-(async () => {
+;(async () => {
   await database.openConnection()
   await (await database.getConnection()).runMigrations()
   await database.closeConnection()

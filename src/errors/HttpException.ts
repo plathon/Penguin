@@ -1,14 +1,10 @@
 import { HttpStatusCode } from './HttpStatusCode'
 
 export abstract class HttpException extends Error {
-  public readonly name: string;
-  public readonly httpCode: HttpStatusCode;
+  public readonly name: string
+  public readonly httpCode: HttpStatusCode
 
-  constructor (
-    name: string,
-    httpCode: HttpStatusCode,
-    description: string
-  ) {
+  constructor(name: string, httpCode: HttpStatusCode, description: string) {
     super(description)
     Object.setPrototypeOf(this, new.target.prototype)
     this.name = name

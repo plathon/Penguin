@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  ManyToMany,
+  JoinTable
+} from 'typeorm'
 import Tag from './Tag'
 import User from './User'
 
@@ -13,10 +20,10 @@ export default class Product {
   @Column()
   description: string
 
-  @ManyToOne(type => User, user => user.products)
+  @ManyToOne(() => User, user => user.products)
   user: User
 
-  @ManyToMany(type => Tag, tag => tag.products)
+  @ManyToMany(() => Tag, tag => tag.products)
   @JoinTable()
   tags: Tag[]
 }

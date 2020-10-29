@@ -5,6 +5,8 @@ import AuthUserLocalService from './authUserLocalService'
 
 const userRepository = new UserRepository(database)
 const authUserLocalService = new AuthUserLocalService(userRepository)
-const authUserLocalController = new AuthUserLocalController(authUserLocalService)
+const authUserLocalController = new AuthUserLocalController(
+  authUserLocalService
+)
 
 export default authUserLocalController

@@ -3,9 +3,13 @@ import { NextFunction, Request, Response } from 'express'
 import CreateOrderService from './createOrderService'
 
 export default class CreateOrderController {
-  constructor (private createOrderService: CreateOrderService) { }
+  constructor(private createOrderService: CreateOrderService) {}
 
-  execute = async (request: Request, response: Response, next: NextFunction) : Promise<void> => {
+  execute = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> => {
     if (!requestErrorHandler(request, next)) return
     const userId = request.user.id
     const body = request.body
