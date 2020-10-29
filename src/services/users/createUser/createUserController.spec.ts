@@ -22,11 +22,11 @@ describe('create user controller', () => {
       }
     } as Request
 
-    const mockResponse = {
+    const mockResponse = ({
       status: jest.fn().mockReturnValue({
         json: jest.fn()
       })
-    } as unknown as Response
+    } as unknown) as Response
 
     beforeEach(() => {
       userRepository = new UserRepository(database)

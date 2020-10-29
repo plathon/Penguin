@@ -3,8 +3,12 @@ import { NextFunction, Request, Response } from 'express'
 import CreateProductService from './createProductService'
 
 export default class CreateProductController {
-  constructor (private createProductService: CreateProductService) {}
-  execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  constructor(private createProductService: CreateProductService) {}
+  execute = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> => {
     if (!requestErrorHandler(request, next)) return
     const body = request.body
     const { id } = request.user

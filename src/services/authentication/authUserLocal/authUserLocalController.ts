@@ -3,9 +3,13 @@ import { NextFunction, Request, Response } from 'express'
 import AuthUserLocalService from './authUserLocalService'
 
 export default class AuthUserLocalController {
-  constructor (private authUserLocalService: AuthUserLocalService) { }
+  constructor(private authUserLocalService: AuthUserLocalService) {}
 
-  execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  execute = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> => {
     if (!requestErrorHandler(request, next)) return
     const body = request.body
     try {

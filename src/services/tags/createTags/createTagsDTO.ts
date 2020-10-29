@@ -3,6 +3,6 @@ export interface CreateTagsRequestDTO {
 }
 
 export interface CreateTagsResponseDTO {
-  id: number,
+  id: number
   name: string
 }

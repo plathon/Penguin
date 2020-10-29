@@ -3,9 +3,13 @@ import CreateUserService from './createUserService'
 import requestErrorHandler from '@utils/requestErrorHandler'
 
 export default class CreateUserController {
-  constructor (private createUserService: CreateUserService) { }
+  constructor(private createUserService: CreateUserService) {}
 
-  execute = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  execute = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ): Promise<void> => {
     if (!requestErrorHandler(request, next)) return
     const body = request.body
     try {

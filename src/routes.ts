@@ -25,14 +25,38 @@ import createOrderValidator from '@validations/createOrderValidator'
 const routes = Router()
 
 routes.post('/users', createUserValidator, createUserController.execute)
-routes.post('/auth/local', authUserLocalValidator, authUserLocalController.execute)
+routes.post(
+  '/auth/local',
+  authUserLocalValidator,
+  authUserLocalController.execute
+)
 
-routes.post('/product', [createProductValidator, passport.authenticate('jwt', { session: false })], createProductController.execute)
-routes.get('/products', [listProductsValidator, passport.authenticate('jwt', { session: false })], listProductsController.execute)
+routes.post(
+  '/product',
+  [createProductValidator, passport.authenticate('jwt', { session: false })],
+  createProductController.execute
+)
+routes.get(
+  '/products',
+  [listProductsValidator, passport.authenticate('jwt', { session: false })],
+  listProductsController.execute
+)
 
-routes.post('/tag', [createTagsValidator, passport.authenticate('jwt', { session: false })], createTagsController.execute)
-routes.get('/tags', [listTagsValidator, passport.authenticate('jwt', { session: false })], listTagsController.execute)
+routes.post(
+  '/tag',
+  [createTagsValidator, passport.authenticate('jwt', { session: false })],
+  createTagsController.execute
+)
+routes.get(
+  '/tags',
+  [listTagsValidator, passport.authenticate('jwt', { session: false })],
+  listTagsController.execute
+)
 
-routes.post('/order', [createOrderValidator, passport.authenticate('jwt', { session: false })], createOrderController.execute)
+routes.post(
+  '/order',
+  [createOrderValidator, passport.authenticate('jwt', { session: false })],
+  createOrderController.execute
+)
 
 export default routes

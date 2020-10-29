@@ -1,9 +1,9 @@
 export interface CreateProductRequestDTO {
-  name: string,
+  name: string
   description: string
 }
 
 export interface CreateProductResponseDTO {
-  name: string,
+  name: string
   description: string
 }

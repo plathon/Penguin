@@ -6,7 +6,10 @@ import ListProductsService from './listProductsService'
 
 const productRepository = new ProductRepository(database)
 const userRepository = new UserRepository(database)
-const listProductsService = new ListProductsService(userRepository, productRepository)
+const listProductsService = new ListProductsService(
+  userRepository,
+  productRepository
+)
 const listProductsController = new ListProductsController(listProductsService)
 
 export default listProductsController

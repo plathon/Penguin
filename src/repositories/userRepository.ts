@@ -4,8 +4,8 @@ import { Database } from '@config/database'
 import { NotFoundException } from '@errors/NotFoundException'
 
 export default class UserRepository {
-  constructor (private database: Database) { }
-  async createUser (createUserRequestDTO: CreateUserRequestDTO): Promise<User> {
+  constructor(private database: Database) {}
+  async createUser(createUserRequestDTO: CreateUserRequestDTO): Promise<User> {
     const repository = (await this.database.getConnection()).getRepository(User)
     const { name, email, password } = createUserRequestDTO
     const user = new User()
@@ -15,7 +15,7 @@ export default class UserRepository {
     return repository.save(user)
   }
 
-  async findUserByEmail (email: string): Promise<User> {
+  async findUserByEmail(email: string): Promise<User> {
     const repository = (await this.database.getConnection()).getRepository(User)
     const user = await repository.findOne({ email })
     if (!user) {
@@ -24,7 +24,7 @@ export default class UserRepository {
     return user
   }
 
-  async findUserById (id: number): Promise<User> {
+  async findUserById(id: number): Promise<User> {
     const repository = (await this.database.getConnection()).getRepository(User)
     const user = repository.findOne(id)
     if (!user) {

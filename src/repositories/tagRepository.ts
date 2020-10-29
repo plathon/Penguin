@@ -3,9 +3,9 @@ import Tag from '@entities/Tag'
 import { CreateTagsRequestDTO } from '@services/tags/createTags/createTagsDTO'
 
 export default class TagRepository {
-  constructor (database: Database) { }
+  constructor(database: Database) {}
 
-  async createTag (createTagRequestDTO: CreateTagsRequestDTO): Promise<Tag> {
+  async createTag(createTagRequestDTO: CreateTagsRequestDTO): Promise<Tag> {
     const repository = (await database.getConnection()).getRepository(Tag)
     const { name } = createTagRequestDTO
     const tag = new Tag()
@@ -14,7 +14,7 @@ export default class TagRepository {
     return response
   }
 
-  async listTags (limit: number, skip: number): Promise<Tag[]> {
+  async listTags(limit: number, skip: number): Promise<Tag[]> {
     const repository = (await database.getConnection()).getRepository(Tag)
     const tags = await repository.find({ take: limit, skip: skip })
     return tags
